@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+@theme {
+  --color-canvas: #f5f8f8;
+  --color-brand-50: #edf3f4;
+  --color-brand-100: #edf3f7;
+  --color-brand-500: #00a7bd;
+  --color-brand-600: #00899c;
+  --color-brand-800: #12394f;
+  --color-brand-950: #061927;
+  --breakpoint-mobile: 35rem;
+  --breakpoint-tablet: 56.25rem;
+  --breakpoint-desktop: 75rem;
+  --breakpoint-wide: 100rem;
+  --animate-shimmer: shimmer 1.5s linear infinite;
+
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas font-sans text-[13px] text-brand-950 antialiased;
+  }
+  button,
+  select,
+  summary {
+    cursor: pointer;
+  }
+  button,
+  a,
+  input,
+  select,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:disabled {
+    cursor: wait;
+    opacity: 0.55;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-3 outline-offset-[3px] outline-slate-400;
+  }
+  input:focus {
+    outline: none;
+  }
+  input::placeholder {
+    @apply text-slate-600 opacity-100;
+  }
+  svg {
+    flex-shrink: 0;
+  }
+  ::selection {
+    @apply bg-slate-200 text-brand-800;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-300;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
